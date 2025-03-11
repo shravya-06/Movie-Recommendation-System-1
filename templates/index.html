@@ -3,104 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Recommendation System</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Movie Recommendation</title>
     <style>
         body {
-            background: url('cinematic-neon-theme.jpg') no-repeat center center fixed;
-            background-size: cover;
-            font-family: 'Poppins', sans-serif;
-            color: #f8f9fa;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
             text-align: center;
-        }
-        
-        header {
-            padding: 20px;
-            font-size: 32px;
-            font-weight: bold;
-            background: linear-gradient(90deg, #ff0000, #ff7300);
-            color: #fff;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-            box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5);
-        }
-        
-        main, section {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 40px;
-            border-radius: 15px;
-            margin: 30px auto;
-            width: 60%;
-            box-shadow: 0px 4px 15px rgba(255, 0, 0, 0.5);
-        }
-        
-        select, input {
-            width: 80%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-        }
-        
-        input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        button {
-            background: #ff4500;
-            padding: 12px 20px;
-            font-size: 18px;
-            font-weight: bold;
             color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s ease-in-out;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
         }
-        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #ff5733;
+            color: white;
+            cursor: pointer;
+        }
         button:hover {
-            background: #ff6347;
+            background-color: #c70039;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>🎬 Ultimate Movie Recommender 🎥</h1>
-    </header>
+    <h1>Movie Recommendation System</h1>
+    <input type="text" id="movieInput" placeholder="Enter a movie name">
+    <button onclick="getRecommendations()">Get Recommendation</button>
     
-    <main>
-        <form id="movie-form">
-            <label for="genre">🎭 Select Genre:</label>
-            <select id="genre" name="genre">
-                <option value="action">🔥 Action</option>
-                <option value="comedy">😂 Comedy</option>
-                <option value="drama">🎭 Drama</option>
-                <option value="horror">👻 Horror</option>
-                <option value="romance">❤️ Romance</option>
-                <option value="sci-fi">🚀 Sci-Fi</option>
-            </select>
-            
-            <label for="rating">⭐ Minimum Rating:</label>
-            <input type="number" id="rating" name="rating" min="1" max="10" step="0.1" placeholder="Enter rating (1-10)">
-            
-            <label for="year">📅 Release Year:</label>
-            <input type="number" id="year" name="year" min="1900" max="2025" placeholder="Enter year">
-            
-            <label for="language">🗣 Language:</label>
-            <input type="text" id="language" name="language" placeholder="e.g., English, French">
-            
-            <button type="submit">Recommend</button>
-        </form>
-    </main>
-    
-    <section id="recommendations">
-        <h2>🎞️ Recommended Movies 🎞️</h2>
-        <ul id="movie-list"></ul>
-    </section>
-
-    <script src="script.js"></script>
+    <script>
+        function getRecommendations() {
+            const movieName = document.getElementById("movieInput").value;
+            if (movieName) {
+                window.location.href = "/main?movie=" + encodeURIComponent(movieName);
+            } else {
+                alert("Please enter a movie name.");
+            }
+        }
+    </script>
 </body>
 </html>
